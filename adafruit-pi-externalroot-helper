@@ -127,19 +127,18 @@ info "fs copy" "Mounting ${target_partition} on /mnt"
 
 info "fs copy" "Copying root filesystem to ${target_partition} with rsync"
 info "fs copy" "This will take quite a while.  Please be patient!"
-    rsync -ax / /mnt
+    rsync -ax --info=progress2 / /mnt
 
 info "boot config" "Configuring boot from {$target_partition}"
     # rootdelay=5 is likely not necessary here, but seems to do no harm.
     cp /boot/cmdline.txt /boot/cmdline.txt.bak
-    sed -i "s|root=\/dev\/mmcblk0p2|root=PARTUUID=${partition_unique_guid} rootdelay=5|" /boot/cmdline.txt
+    sed -i "s|root=PARTUUID=[^ ]*|root=PARTUUID=${partition_unique_guid}|" /boot/cmdline.txt
 
 info "boot config" "Commenting out old root partition in /etc/fstab, adding new one"
     # These changes are made on the new drive after copying so that they
     # don't have to be undone in order to switch back to booting from the
     # SD card.
-    sed -i '/mmcblk0p2/s/^/#/' /mnt/etc/fstab
-    echo "/dev/disk/by-uuid/${target_partition_uuid}    /   ext4    defaults,noatime  0       1" >> /mnt/etc/fstab
+    sed -i "s|PARTUUID=[^ ]*[ ]*/ |PARTUUID=${partition_unique_guid}  / |" /mnt/etc/fstab
 
 info "boot config" "Ok, your system should be ready. You may wish to check:"
 info "boot config" "  /mnt/etc/fstab"
