@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# adafruit-pi-externalroot-helper
+# mz-pi-externalroot-helper
 # 
 # Configure a Raspbian system to use an external USB drive as root filesystem.
 #
@@ -44,7 +44,7 @@ function info() {
 }
 
 if [[ $EUID -ne 0 ]]; then
-    bail "must be run as root. try: sudo adafruit-pi-externalroot-helper"
+    bail "must be run as root. try: sudo mz-pi-externalroot-helper"
 fi
 
 # Handle arguments:
@@ -138,6 +138,7 @@ info "boot config" "Commenting out old root partition in /etc/fstab, adding new 
     # These changes are made on the new drive after copying so that they
     # don't have to be undone in order to switch back to booting from the
     # SD card.
+    cp /mnt/etc/fstab /mnt/etc/fstab.bak
     sed -i "s|PARTUUID=[^ ]*[ ]*/ |/dev/disk/by-uuid/${target_partition_uuid}  / |" /mnt/etc/fstab
 
 info "boot config" "Ok, your system should be ready. You may wish to check:"
