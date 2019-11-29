@@ -138,7 +138,7 @@ info "boot config" "Commenting out old root partition in /etc/fstab, adding new 
     # These changes are made on the new drive after copying so that they
     # don't have to be undone in order to switch back to booting from the
     # SD card.
-    sed -i "s|PARTUUID=[^ ]*[ ]*/ |PARTUUID=${partition_unique_guid}  / |" /mnt/etc/fstab
+    sed -i "s|PARTUUID=[^ ]*[ ]*/ |/dev/disk/by-uuid/${target_partition_uuid}  / |" /mnt/etc/fstab
 
 info "boot config" "Ok, your system should be ready. You may wish to check:"
 info "boot config" "  /mnt/etc/fstab"
