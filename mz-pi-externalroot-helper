@@ -9,7 +9,7 @@
 set -e
 
 function print_version() {
-    echo "Adafruit Pi External Root Helper v0.1.0"
+    echo "MZ Pi External Root Helper v0.1.0"
     exit 1
 }
 
@@ -19,8 +19,6 @@ function print_help() {
     echo "    -v            Print version information"
     echo "    -d [device]   Specify path of device to convert to root"
     echo
-    echo "You must specify a device. See:"
-    echo "https://learn.adafruit.com/external-drive-as-raspberry-pi-root"
     exit 1
 }
 
