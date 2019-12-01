@@ -1,7 +1,7 @@
 MZ-Pi-ExternalRoot-helper
 ===============================
 
-The original script is from [Adafruit-Pi-ExternalRoot-Helper](https://github.com/adafruit/Adafruit-Pi-ExternalRoot-Helper) which is not updatd since July 2015.
+The original script is from [Adafruit-Pi-ExternalRoot-Helper](https://github.com/adafruit/Adafruit-Pi-ExternalRoot-Helper) which has not been updated since July 2015.
 
 Using mz-pi-externalroot-helper
 -------------------------------------
